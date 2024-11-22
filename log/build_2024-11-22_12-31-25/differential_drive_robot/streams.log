@@ -1,0 +1,32 @@
+[0.015s] Invoking command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot': /usr/bin/cmake /home/mbilal/MR_Proj_SLAM-Navigation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot
+[0.159s] -- The C compiler identification is GNU 11.4.0
+[0.309s] -- The CXX compiler identification is GNU 11.4.0
+[0.335s] -- Detecting C compiler ABI info
+[0.470s] -- Detecting C compiler ABI info - done
+[0.512s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.513s] -- Detecting C compile features
+[0.514s] -- Detecting C compile features - done
+[0.523s] -- Detecting CXX compiler ABI info
+[0.672s] -- Detecting CXX compiler ABI info - done
+[0.711s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.712s] -- Detecting CXX compile features
+[0.713s] -- Detecting CXX compile features - done
+[0.736s] [31mCMake Error at CMakeLists.txt:9 (find_package):
+[0.736s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[0.736s]   has asked CMake to find a package configuration file provided by
+[0.736s]   "ament_cmake", but CMake did not find one.
+[0.736s] 
+[0.736s]   Could not find a package configuration file provided by "ament_cmake" with
+[0.737s]   any of the following names:
+[0.737s] 
+[0.737s]     ament_cmakeConfig.cmake
+[0.737s]     ament_cmake-config.cmake
+[0.737s] 
+[0.737s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[0.737s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[0.737s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[0.738s]   has been installed.
+[0.738s] 
+[0.738s] [0m
+[0.738s] -- Configuring incomplete, errors occurred!
+[0.743s] Invoked command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot' returned '1': /usr/bin/cmake /home/mbilal/MR_Proj_SLAM-Navigation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot

@@ -1,0 +1,2 @@
+Invoking command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot': /usr/bin/cmake /home/mbilal/MR_Proj_SLAM-Navigation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot
+Invoked command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot' returned '1': /usr/bin/cmake /home/mbilal/MR_Proj_SLAM-Navigation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot

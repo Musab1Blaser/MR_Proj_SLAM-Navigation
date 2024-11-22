@@ -1,0 +1,45 @@
+-- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: 
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'flake8' to check Python code syntax and style conventions
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done (0.8s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/launch/hb_robot.launch.py
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/launch/jz_robot.launch.py
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/launch/rsp.launch.py
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/bridge_parameters.yaml
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/hb_robot.gazebo.xacro
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/hb_robot.urdf.xacro
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/inertial_macros.xacro
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/robot.gazebo.xacro
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/robot.urdf.xacro
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/robot_core.xacro
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/config/gz_bridge.yaml
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/scripts/open-loop.py
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/lib/differential_drive_robot/open-loop.py
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/ament_index/resource_index/package_run_dependencies/differential_drive_robot
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/ament_index/resource_index/parent_prefix_path/differential_drive_robot
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/ament_prefix_path.sh
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/ament_prefix_path.dsv
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/path.sh
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/path.dsv
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.bash
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.sh
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.zsh
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.dsv
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/package.dsv
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/ament_index/resource_index/packages/differential_drive_robot
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/cmake/differential_drive_robotConfig.cmake
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/cmake/differential_drive_robotConfig-version.cmake
+-- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/package.xml

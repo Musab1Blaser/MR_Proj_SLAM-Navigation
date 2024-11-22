@@ -1,0 +1,51 @@
+[0.022s] Invoking command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/mbilal/MR_Proj_SLAM-Navigation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot
+[0.042s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.450s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.468s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[0.692s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.692s] -- Configured cppcheck include dirs: 
+[0.692s] -- Configured cppcheck exclude dirs and/or files: 
+[0.703s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.717s] -- Added test 'lint_cmake' to check CMake code style
+[0.725s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.782s] -- Added test 'uncrustify' to check C / C++ code style
+[0.782s] -- Configured uncrustify additional arguments: 
+[0.790s] -- Added test 'xmllint' to check XML markup files
+[0.794s] -- Configuring done (0.8s)
+[0.802s] -- Generating done (0.0s)
+[0.802s] -- Build files have been written to: /home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot
+[0.807s] Invoked command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/mbilal/MR_Proj_SLAM-Navigation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot
+[0.811s] Invoking command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot -- -j8 -l8
+[0.849s] Invoked command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot -- -j8 -l8
+[0.894s] Invoking command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot
+[0.900s] -- Install configuration: ""
+[0.901s] -- Execute custom install script
+[0.902s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/launch/hb_robot.launch.py
+[0.910s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/launch/jz_robot.launch.py
+[0.917s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/launch/rsp.launch.py
+[0.925s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/bridge_parameters.yaml
+[0.933s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/hb_robot.gazebo.xacro
+[0.941s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/hb_robot.urdf.xacro
+[0.949s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/inertial_macros.xacro
+[0.957s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/robot.gazebo.xacro
+[0.964s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/robot.urdf.xacro
+[0.972s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/model/robot_core.xacro
+[0.979s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/config/gz_bridge.yaml
+[0.987s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/scripts/open-loop.py
+[0.995s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/lib/differential_drive_robot/open-loop.py
+[1.002s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/ament_index/resource_index/package_run_dependencies/differential_drive_robot
+[1.010s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/ament_index/resource_index/parent_prefix_path/differential_drive_robot
+[1.018s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/ament_prefix_path.sh
+[1.025s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/ament_prefix_path.dsv
+[1.034s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/path.sh
+[1.042s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/environment/path.dsv
+[1.050s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.bash
+[1.057s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.sh
+[1.066s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.zsh
+[1.074s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/local_setup.dsv
+[1.082s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/package.dsv
+[1.089s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/ament_index/resource_index/packages/differential_drive_robot
+[1.097s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/cmake/differential_drive_robotConfig.cmake
+[1.104s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/cmake/differential_drive_robotConfig-version.cmake
+[1.113s] -- Symlinking: /home/mbilal/MR_Proj_SLAM-Navigation/install/differential_drive_robot/share/differential_drive_robot/package.xml
+[1.124s] Invoked command in '/home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mbilal/MR_Proj_SLAM-Navigation/build/differential_drive_robot
