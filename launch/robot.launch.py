@@ -53,13 +53,13 @@ def generate_launch_description():
     robot_model_path = os.path.join(
         get_package_share_directory(robot_pkg_name),
         'model',
-        'robot.xacro'
+        'robot.urdf.xacro'
     )
 
     gz_bridge_params_path = os.path.join(
         get_package_share_directory(robot_pkg_name),
-        'config',
-        'gz_bridge.yaml'
+        'model',
+        'bridge_parameters.yaml'
     )
 
     # Process the Xacro file to generate the URDF representation of the robot
@@ -122,6 +122,13 @@ def generate_launch_description():
         output='screen'
     )
 
+    controller_node = Node(
+        package= robot_pkg_name,
+        executable='open-loop.py',
+        output='screen',
+        parameters=[{'use_sim_time': True}]
+    )
+
     return LaunchDescription([
         world_arg,
         gazebo_launch,
@@ -134,4 +141,6 @@ def generate_launch_description():
         spawn_model_gazebo_node,
         robot_state_publisher_node,
         gz_bridge_node,
+        controller_node,
+
     ])
