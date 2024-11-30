@@ -12,7 +12,7 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY launch model config scripts
+  DIRECTORY launch model config scripts worlds
   DESTINATION share/${PROJECT_NAME}
 )
 

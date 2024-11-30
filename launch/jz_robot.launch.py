@@ -15,9 +15,15 @@ def generate_launch_description():
     robot_pkg_name = "differential_drive_robot"
 
     # Define a launch argument for the world file, defaulting to "empty.sdf"
+    options = ['office_cpr_construction.world', 'office_earthquake.world']
+    world_path = os.path.join(get_package_share_directory(robot_pkg_name), 
+                              'worlds', 'slam_maps', 'gazebo_models_worlds_collection-master', 'worlds', options[1])
+    world_path = 'empty.sdf'
+
+
     world_arg = DeclareLaunchArgument(
         'world',
-        default_value='empty.sdf',
+        default_value=world_path,
         description='Specify the world file for Gazebo (e.g., empty.sdf)'
     )
 
@@ -142,5 +148,4 @@ def generate_launch_description():
         robot_state_publisher_node,
         gz_bridge_node,
         controller_node,
-
     ])
