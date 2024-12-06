@@ -3,9 +3,9 @@
 <package format="3">
   <name>differential_drive_robot</name>
   <version>0.0.0</version>
-  <description>A ROS 2 package for simulating a simple differential drive robot. Includes robot description and Gazebo simulation integration.</description>
-  <maintainer email="lucasrmazzetto@gmail.com">Lucas Mazzetto</maintainer>
-  <license>Apache License 2.0</license>
+  <description>TODO: Package description</description>
+  <maintainer email="lucasrmazzetto@gmail.com">user</maintainer>
+  <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

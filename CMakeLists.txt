@@ -12,8 +12,13 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY launch model config
+  DIRECTORY launch model config scripts worlds
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(
+  PROGRAMS scripts/open-loop.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
