@@ -41,7 +41,7 @@ def generate_launch_description():
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'differential_drive_robot',
-                                        '-x', '10.0',  # Set x-coordinate
+                                        '-x', '0.0',  # Set x-coordinate
                                         '-y', '0.0',  # Set y-coordinate
                                         '-z', '0.0',  # Set z-coordinate
                                         '-Y', '1.57'  # Set yaw (e.g., 90 degrees in radians)
