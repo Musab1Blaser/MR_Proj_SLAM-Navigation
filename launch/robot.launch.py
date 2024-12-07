@@ -6,6 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.actions import TimerAction
 
 from launch_ros.actions import Node
 
@@ -28,7 +29,7 @@ def generate_launch_description():
     # worlds: office, construction, maze
     worlds = ['slam_maps/gazebo_models_worlds_collection-master/worlds/office_earthquake.world', 'slam_maps/gazebo_models_worlds_collection-master/worlds/office_cpr_construction.world', 'small_maze/smaze2d.world']
     # Path to the world file (replace with your actual world file path)
-    world_file_path = os.path.join(get_package_share_directory(package_name), 'worlds', worlds[2])
+    world_file_path = os.path.join(get_package_share_directory(package_name), 'worlds', worlds[1])
     print(world_file_path) # for debugging
 
     # Include the Gazebo launch file with the specified world file
@@ -41,8 +42,8 @@ def generate_launch_description():
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'differential_drive_robot',
-                                        '-x', '5',  # Set x-coordinate
-                                        '-y', '10',  # Set y-coordinate
+                                        '-x', '0',  # Set x-coordinate
+                                        '-y', '0',  # Set y-coordinate
                                         '-z', '0.0',  # Set z-coordinate
                                         '-Y', '1.57'  # Set yaw (e.g., 90 degrees in radians)
                                     ],
@@ -50,16 +51,35 @@ def generate_launch_description():
 
     controller_node = Node(
         package= 'differential_drive_robot',
-        executable='open-loop.py',
+        executable='lidar-nav.py',
         output='screen',
         parameters=[{'use_sim_time': True}]
     )
-    
+
+
+    slam = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(get_package_share_directory(package_name), 'launch', 'online_async_launch.py')]),
+        launch_arguments={'params_file': 'config/mapper_params_online_async.yaml', 'use_sim_time': 'true'}.items()
+    )
+
+
+    navigation = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(get_package_share_directory(package_name), 'launch', 'navigation_launch.py')]),
+        launch_arguments={'params_file': 'config/nav2_params.yaml', 'use_sim_time': 'true'}.items()
+    )
+
+    # TimerAction to delay the navigation node
+    # delayed_navigation = TimerAction(
+    #     period=5.0,  # Delay in seconds
+    #     actions=[navigation]
+    # )
 
     # Launch them all!
     return LaunchDescription([
         rsp,
         gazebo,
         spawn_entity,
-        controller_node,
+        # controller_node,
+        slam,
+        navigation,
     ])

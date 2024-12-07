@@ -12,12 +12,12 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install(
-  DIRECTORY launch model config scripts worlds
+  DIRECTORY launch model scripts worlds config
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(
-  PROGRAMS scripts/open-loop.py
+  # PROGRAMS scripts/open-loop.py
   PROGRAMS scripts/lidar-nav.py
   DESTINATION lib/${PROJECT_NAME}
 )
