@@ -18,6 +18,7 @@ install(
 
 install(
   PROGRAMS scripts/open-loop.py
+  PROGRAMS scripts/lidar-nav.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
