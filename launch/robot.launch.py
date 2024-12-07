@@ -42,7 +42,7 @@ def generate_launch_description():
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'differential_drive_robot',
                                         '-x', '5',  # Set x-coordinate
-                                        '-y', '5',  # Set y-coordinate
+                                        '-y', '10',  # Set y-coordinate
                                         '-z', '0.0',  # Set z-coordinate
                                         '-Y', '1.57'  # Set yaw (e.g., 90 degrees in radians)
                                     ],

@@ -74,7 +74,7 @@ class SquarePath(Node):
         while True: #infinite open loop
             if state == "F":
                 #movement in straight line for 2 meters
-                info.linear.x = linear_vel
+                info.linear.x = -linear_vel
                 info.angular.z = 0.0
                 self.cmd_vel_publisher.publish(info)
                 time.sleep(duration) 
