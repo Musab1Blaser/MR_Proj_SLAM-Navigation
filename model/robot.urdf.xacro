@@ -3,5 +3,6 @@
 
     <xacro:include filename="robot_core.xacro" />
     <xacro:include filename="robot.gazebo.xacro"/>
+    <xacro:include filename="Lidar.xacro"/>
 
 </robot>

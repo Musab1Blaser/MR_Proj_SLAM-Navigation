@@ -28,7 +28,7 @@ def generate_launch_description():
     # worlds: office, construction, maze
     worlds = ['slam_maps/gazebo_models_worlds_collection-master/worlds/office_earthquake.world', 'slam_maps/gazebo_models_worlds_collection-master/worlds/office_cpr_construction.world', 'small_maze/smaze2d.world']
     # Path to the world file (replace with your actual world file path)
-    world_file_path = os.path.join(get_package_share_directory(package_name), 'worlds', worlds[1])
+    world_file_path = os.path.join(get_package_share_directory(package_name), 'worlds', worlds[2])
     print(world_file_path) # for debugging
 
     # Include the Gazebo launch file with the specified world file
@@ -41,8 +41,8 @@ def generate_launch_description():
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'differential_drive_robot',
-                                        '-x', '0.0',  # Set x-coordinate
-                                        '-y', '0.0',  # Set y-coordinate
+                                        '-x', '5',  # Set x-coordinate
+                                        '-y', '5',  # Set y-coordinate
                                         '-z', '0.0',  # Set z-coordinate
                                         '-Y', '1.57'  # Set yaw (e.g., 90 degrees in radians)
                                     ],
