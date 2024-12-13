@@ -4,8 +4,9 @@
     <joint name = "laser_joint" type = "fixed">
         <parent link = "chassis"/>
         <child link = "laser_frame"/>
-        <origin xyz = " 0.1 0 0.0" rpy = "0 0 0"/>
-
+        <origin xyz = "0.15 0 0.08" rpy = "0 0 0"/>
+        <!-- <axis xyz="1 0 0"> -->
+        <!-- <limit lower="-1.57" upper="1.57" effort="1.0" velocity="1.0"> -->
     </joint>
     <link name = "laser_frame">
         <visual>
@@ -41,7 +42,7 @@
                     </horizontal>
                 </scan>
                 <range>
-                    <min>0.3</min>
+                    <min>0.22</min>
                     <max>12</max>
                     <resolution>0.01</resolution>
                 </range>
