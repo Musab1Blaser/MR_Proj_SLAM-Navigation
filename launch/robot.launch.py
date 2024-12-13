@@ -1,4 +1,5 @@
 import os
+import random
 
 from ament_index_python.packages import get_package_share_directory
 
@@ -10,7 +11,7 @@ from launch.actions import TimerAction
 
 from launch_ros.actions import Node
 
-# robo_spawn_list = [[()]]
+robo_spawn_list = [(2.5, -1.5, 1.57), (6.5, -6, 1.57/2), (-6.5, -5, 1.57*3/2), (-6, 6, 1.57*5/2), (7, 5, 1.57*7/2)]
 
 def generate_launch_description():
 
@@ -37,17 +38,31 @@ def generate_launch_description():
         PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
         launch_arguments={'world': world_file_path}.items()
     )
+
+    robot_spawn_point = random.choice(robo_spawn_list)
+    print(robot_spawn_point)
     
     # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'differential_drive_robot',
-                                        '-x', '2',  # Set x-coordinate
-                                        '-y', '-2',  # Set y-coordinate
+                                        '-x', str(robot_spawn_point[0]),  # Set x-coordinate
+                                        '-y', str(robot_spawn_point[1]),  # Set y-coordinate
                                         '-z', '0.2',  # Set z-coordinate
-                                        '-Y', '1.57'  # Set yaw (e.g., 90 degrees in radians)
+                                        '-Y', str(robot_spawn_point[2])  # Set yaw (e.g., 90 degrees in radians)
                                     ],
                         output='screen')
+    
+    spawn_target = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-file', 'worlds/slam_maps/gazebo_models_worlds_collection-master/models/human_male_1/model.sdf',
+            '-entity', 'target_person',
+            '-x', '0.0', '-y', '0.0', '-z', '0.5', '-R', '1.57'
+        ],
+        output='screen'
+    )
 
     controller_node = Node(
         package= 'differential_drive_robot',
@@ -79,6 +94,7 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
+        spawn_target,
         # controller_node,
         slam,
         navigation,
