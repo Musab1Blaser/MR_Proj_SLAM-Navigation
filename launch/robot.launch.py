@@ -64,8 +64,15 @@ def generate_launch_description():
         output='screen'
     )
 
-    targetX = 0
-    targetY = 0
+    targetX = 3
+    targetY = 6
+    targetW = 2.0
+
+    # Write target coordinates to goal.txt
+    goal_file_path = os.path.join(get_package_share_directory(package_name), 'goal.txt')
+    print("goal file:", goal_file_path) # for debugging
+    with open(goal_file_path, 'w') as file:
+        file.write(f"{targetX}\n{targetY}\n{targetW}\n")
 
     controller_node = Node(
         package= 'differential_drive_robot',
