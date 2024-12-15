@@ -1,82 +1,68 @@
-#!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from sensor_msgs.msg import LaserScan
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import PoseStamped
+from nav2_msgs.action import NavigateToPose
+from rclpy.action import ActionClient
+import random
 
 
-class LidarObstacleAvoidance(Node):
+class NavigateToPoseNode(Node):
     def __init__(self):
-        super().__init__('LidarObstacleAvoidance')
+        super().__init__('navigate_to_pose_node')
 
-        # Publisher for robot velocity
-        self.cmd_vel_publisher = self.create_publisher(Twist, '/cmd_vel', 10)
+        # Create Action Client for Nav2
+        self.nav_to_pose_client = ActionClient(self, NavigateToPose, '/navigate_to_pose')
 
-        # Subscriber for LIDAR data
-        self.lidar_subscriber = self.create_subscription(
-            LaserScan,
-            '/scan',
-            self.lidar_callback,
-            10
-        )
+        # Timer to set a random goal every 30 seconds
+        self.timer = self.create_timer(30.0, self.send_random_goal)
 
-        self.get_logger().info("Obstacle Avoidance Node Initialized")
-        self.front_clear = True
-        self.left_clear = True
-        self.right_clear = True
+    def send_random_goal(self):
+        """Send a random navigation goal."""
+        if not self.nav_to_pose_client.server_is_ready():
+            self.get_logger().info('NavigateToPose action server not ready, waiting...')
+            self.nav_to_pose_client.wait_for_server()
 
-    def lidar_callback(self, msg):
-        """
-        Callback to process LIDAR data and check for obstacles in sectors.
-        """
-        ranges = msg.ranges
-        valid_ranges = [r if r > msg.range_min and r < msg.range_max else float('inf') for r in ranges]
+        # Create a random goal pose
+        goal_msg = NavigateToPose.Goal()
+        goal_msg.pose.header.frame_id = 'map'  # Frame of reference
+        goal_msg.pose.header.stamp = self.get_clock().now().to_msg()
 
-        # Divide the scan into three sectors: front, left, right
-        num_readings = len(valid_ranges)
-        front_sector = valid_ranges[num_readings // 3 : 2 * num_readings // 3]
-        left_sector = valid_ranges[:num_readings // 3]
-        right_sector = valid_ranges[2 * num_readings // 3 :]
+        # Define random x, y, and yaw values (update these ranges based on your map)
+        goal_msg.pose.pose.position.x = random.uniform(-5.0, 5.0)  # X position
+        goal_msg.pose.pose.position.y = random.uniform(-5.0, 5.0)  # Y position
+        goal_msg.pose.pose.orientation.w = 1.0  # Default orientation (facing forward)
 
-        # Check if any sector has obstacles closer than the threshold
-        threshold = 1  # Obstacle distance threshold
-        self.front_clear = min(front_sector) > threshold
-        self.left_clear = min(left_sector) > threshold
-        self.right_clear = min(right_sector) > threshold
+        self.get_logger().info(f'Sending goal to x: {goal_msg.pose.pose.position.x}, y: {goal_msg.pose.pose.position.y}')
 
-        self.get_logger().info(f"Front Clear: {self.front_clear}, Left Clear: {self.left_clear}, Right Clear: {self.right_clear}")
+        # Send the goal
+        self.nav_to_pose_client.send_goal_async(goal_msg).add_done_callback(self.goal_response_callback)
 
-    def move_robot(self):
-        """
-        Move the robot based on processed LIDAR data.
-        """
-        twist = Twist()
-        linear_speed = 0.2  # Forward speed
-        angular_speed = 0.5  # Turning speed
+    def goal_response_callback(self, future):
+        """Handle the response from the action server."""
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.get_logger().info('Goal rejected by Nav2.')
+            return
 
-        while rclpy.ok():
-            rclpy.spin_once(self)
+        self.get_logger().info('Goal accepted, waiting for result...')
+        goal_handle.get_result_async().add_done_callback(self.result_callback)
 
-            if not self.front_clear:
-                self.get_logger().info("Obstacle ahead! Rotating...")
-                twist.linear.x = 0.0
-                twist.angular.z = angular_speed if self.right_clear else -angular_speed
-            else:
-                self.get_logger().info("Path is clear. Moving forward...")
-                twist.linear.x = linear_speed
-                twist.angular.z = 0.0
-
-            self.cmd_vel_publisher.publish(twist)
+    def result_callback(self, future):
+        """Handle the result of the navigation."""
+        result = future.result()
+        if result.status == 0:  # SUCCEEDED
+            self.get_logger().info('Goal reached successfully!')
+        else:
+            self.get_logger().info(f'Failed to reach the goal: {result.status}')
 
 
 def main(args=None):
     rclpy.init(args=args)
-    node = LidarObstacleAvoidance()
-
+    node = NavigateToPoseNode()
     try:
-        node.move_robot()
+        rclpy.spin(node)
     except KeyboardInterrupt:
-        pass
+        node.get_logger().info('Shutting down node.')
     finally:
         node.destroy_node()
         rclpy.shutdown()

@@ -95,7 +95,7 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         spawn_target,
-        # controller_node,
         slam,
         navigation,
+        controller_node,
     ])
