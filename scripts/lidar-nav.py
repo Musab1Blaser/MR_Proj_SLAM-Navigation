@@ -1,71 +1,45 @@
+#!/usr/bin/env python3
+
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import PoseStamped
-from nav2_msgs.action import NavigateToPose
-from rclpy.action import ActionClient
-import random
+from geometry_msgs.msg import PoseStamped, Twist
 
-
-class NavigateToPoseNode(Node):
+class GoalPosePublisher(Node):
     def __init__(self):
-        super().__init__('navigate_to_pose_node')
+        super().__init__('goal_pose_publisher')
+        self.publisher = self.create_publisher(PoseStamped, '/goal_pose', 10)
+        self.subscription = self.create_subscription(Twist, '/cmd_vel', self.cmd_vel_callback, 10)
+        self.is_active = True
+        self.publish_goal_pose()
 
-        # Create Action Client for Nav2
-        self.nav_to_pose_client = ActionClient(self, NavigateToPose, '/navigate_to_pose')
+    def publish_goal_pose(self):
+        while self.is_active and rclpy.ok():
+            goal_pose = PoseStamped()
+            goal_pose.header.frame_id = 'map'
+            goal_pose.pose.position.x = 2.0
+            goal_pose.pose.position.y = 2.0
+            goal_pose.pose.position.z = 0.0
+            goal_pose.pose.orientation.w = 1.0
 
-        # Timer to set a random goal every 30 seconds
-        self.timer = self.create_timer(30.0, self.send_random_goal)
+            self.publisher.publish(goal_pose)
+            self.get_logger().info(f'Published goal pose: \n{goal_pose}')
+            rclpy.spin_once(self, timeout_sec=0.1)
 
-    def send_random_goal(self):
-        """Send a random navigation goal."""
-        if not self.nav_to_pose_client.server_is_ready():
-            self.get_logger().info('NavigateToPose action server not ready, waiting...')
-            self.nav_to_pose_client.wait_for_server()
+    def cmd_vel_callback(self, msg):
+        # Stop publishing if linear or angular velocity exceeds a small threshold
+        linear_threshold = 0.01  # Small linear velocity threshold
+        angular_threshold = 0.01  # Small angular velocity threshold
 
-        # Create a random goal pose
-        goal_msg = NavigateToPose.Goal()
-        goal_msg.pose.header.frame_id = 'map'  # Frame of reference
-        goal_msg.pose.header.stamp = self.get_clock().now().to_msg()
-
-        # Define random x, y, and yaw values (update these ranges based on your map)
-        goal_msg.pose.pose.position.x = random.uniform(-5.0, 5.0)  # X position
-        goal_msg.pose.pose.position.y = random.uniform(-5.0, 5.0)  # Y position
-        goal_msg.pose.pose.orientation.w = 1.0  # Default orientation (facing forward)
-
-        self.get_logger().info(f'Sending goal to x: {goal_msg.pose.pose.position.x}, y: {goal_msg.pose.pose.position.y}')
-
-        # Send the goal
-        self.nav_to_pose_client.send_goal_async(goal_msg).add_done_callback(self.goal_response_callback)
-
-    def goal_response_callback(self, future):
-        """Handle the response from the action server."""
-        goal_handle = future.result()
-        if not goal_handle.accepted:
-            self.get_logger().info('Goal rejected by Nav2.')
-            return
-
-        self.get_logger().info('Goal accepted, waiting for result...')
-        goal_handle.get_result_async().add_done_callback(self.result_callback)
-
-    def result_callback(self, future):
-        """Handle the result of the navigation."""
-        result = future.result()
-        if result.status == 0:  # SUCCEEDED
-            self.get_logger().info('Goal reached successfully!')
-        else:
-            self.get_logger().info(f'Failed to reach the goal: {result.status}')
+        if abs(msg.linear.x) > linear_threshold or abs(msg.angular.z) > angular_threshold:
+            self.is_active = False
+            self.get_logger().info("Stopping goal pose publishing due to cmd_vel exceeding threshold.")
 
 
 def main(args=None):
     rclpy.init(args=args)
-    node = NavigateToPoseNode()
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        node.get_logger().info('Shutting down node.')
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
+    node = GoalPosePublisher()
+    node.destroy_node()
+    rclpy.shutdown()
 
 
 if __name__ == '__main__':

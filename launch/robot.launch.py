@@ -64,6 +64,9 @@ def generate_launch_description():
         output='screen'
     )
 
+    targetX = 0
+    targetY = 0
+
     controller_node = Node(
         package= 'differential_drive_robot',
         executable='lidar-nav.py',
