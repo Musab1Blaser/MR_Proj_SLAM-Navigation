@@ -15,11 +15,7 @@ robo_spawn_list = [(2.5, -1.5, 1.57), (6.5, -6, 1.57/2), (-6.5, -5, 1.57*3/2), (
 
 def generate_launch_description():
 
-
-    # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
-    # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
-
-    package_name='differential_drive_robot' #<--- CHANGE ME
+    package_name='differential_drive_robot' 
 
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
@@ -28,7 +24,9 @@ def generate_launch_description():
     )
 
     # worlds: office, construction, maze
-    worlds = ['slam_maps/gazebo_models_worlds_collection-master/worlds/office_earthquake.world', 'slam_maps/gazebo_models_worlds_collection-master/worlds/office_cpr_construction.world', 'small_maze/smaze2d.world']
+    worlds = ['slam_maps/gazebo_models_worlds_collection-master/worlds/office_earthquake.world', 
+            #   'slam_maps/gazebo_models_worlds_collection-master/worlds/office_cpr_construction.world', 'small_maze/smaze2d.world'
+              ]
     # Path to the world file (replace with your actual world file path)
     world_file_path = os.path.join(get_package_share_directory(package_name), 'worlds', worlds[0])
     print(world_file_path) # for debugging
@@ -43,7 +41,7 @@ def generate_launch_description():
     robot_spawn_point = robo_spawn_list[1]
     print(robot_spawn_point)
     
-    # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
+    # Run the spawner node from the gazebo_ros package. 
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'differential_drive_robot',
@@ -57,8 +55,8 @@ def generate_launch_description():
 
 
     # Define the boundaries of the environment
-    x_min, x_max = -6, 6
-    y_min, y_max = -6, 6
+    x_min, x_max = -8, 8
+    y_min, y_max = -8, 8
 
     # Define the rectangular regions to avoid
     obstacle_regions = [
@@ -116,7 +114,7 @@ def generate_launch_description():
 
     controller_node = Node(
         package= 'differential_drive_robot',
-        executable='lidar-nav.py',
+        executable='publish_goal_pose.py',
         output='screen',
         parameters=[{'use_sim_time': True}]
     )

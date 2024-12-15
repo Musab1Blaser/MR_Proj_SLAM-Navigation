@@ -5,6 +5,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped, Twist
 import os
 from ament_index_python.packages import get_package_share_directory
+import time
 
 class GoalPosePublisher(Node):
     def __init__(self):
@@ -30,6 +31,7 @@ class GoalPosePublisher(Node):
 
     def publish_goal_pose(self):
         while self.is_active and rclpy.ok():
+            time.sleep(5)
             x, y, w = self.read_goal_from_file()
             if x is not None and y is not None and w is not None:
                 goal_pose = PoseStamped()
