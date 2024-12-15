@@ -53,20 +53,58 @@ def generate_launch_description():
                                     ],
                         output='screen')
     
+
+
+    # Define the boundaries of the environment
+    x_min, x_max = -6, 6
+    y_min, y_max = -6, 6
+
+    # Define the rectangular regions to avoid
+    obstacle_regions = [
+        (-7, -4, 7, 10),      # Adjusted Top-Left Region
+        (-2.5, 2.5, -3.5, 4.5), # Adjusted Centre Region
+        (4, 10, 8, 10),        # Adjusted Top-Right Region
+        (8, 10, 4, 10),         # Adjusted Middle-Right Region
+        (-10, -8, 2, -10),     # Adjusted Bottom-Left Region
+        (-10, 5, -8, -10),  # Adjusted Bottom-Centre Region
+        (6, 9, -8, -3),       # Adjusted Bottom-Right Region
+    ]
+
+    def is_in_obstacle(x, y, obstacles):
+        """Check if a point (x, y) is in any obstacle region."""
+        for region in obstacles:
+            if region[0] <= x <= region[1] and region[2] <= y <= region[3]:
+                return True
+        return False
+
+    def generate_random_goal(obstacles, x_bounds, y_bounds):
+        """Generate random coordinates avoiding obstacles."""
+        while True:
+            # Generate random x and y within the bounds
+            x = random.uniform(x_bounds[0], x_bounds[1])
+            y = random.uniform(y_bounds[0], y_bounds[1])
+            
+            # Check if the point is in any obstacle region
+            if not is_in_obstacle(x, y, obstacles):
+                return x, y
+            
+
+    # Generate a random goal point
+    random_goal = generate_random_goal(obstacle_regions, (x_min, x_max), (y_min, y_max))
+    print(f"Random goal coordinates: {random_goal}")
+    targetX, targetY = random_goal
+    targetW = 1
+
     spawn_target = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
         arguments=[
             '-file', 'worlds/slam_maps/gazebo_models_worlds_collection-master/models/human_male_1/model.sdf',
             '-entity', 'target_person',
-            '-x', '0.0', '-y', '0.0', '-z', '0.5', '-R', '1.57'
+            '-x', str(targetX), '-y', str(targetY), '-z', '0.1', '-R', '1.57'
         ],
         output='screen'
     )
-
-    targetX = 3
-    targetY = 6
-    targetW = 2.0
 
     # Write target coordinates to goal.txt
     goal_file_path = os.path.join(get_package_share_directory(package_name), 'goal.txt')
