@@ -38,7 +38,7 @@ def generate_launch_description():
     )
 
     robot_spawn_point = random.choice(robo_spawn_list)
-    robot_spawn_point = robo_spawn_list[1]
+    # robot_spawn_point = robo_spawn_list[1]
     print(robot_spawn_point)
     
     # Run the spawner node from the gazebo_ros package. 
@@ -91,8 +91,8 @@ def generate_launch_description():
     # Generate a random goal point
     random_goal = generate_random_goal(obstacle_regions, (x_min, x_max), (y_min, y_max))
     print(f"Random goal coordinates: {random_goal}")
-    # targetX, targetY = random_goal
-    targetX, targetY = -6.5, 5
+    targetX, targetY = random_goal
+    # targetX, targetY = 2, 4
     targetW = 1
 
     spawn_target = Node(

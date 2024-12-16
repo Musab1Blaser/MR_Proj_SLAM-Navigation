@@ -8,6 +8,8 @@ Build: `colcon build --symlink-install` <br>
 Source: `source install/setup.bash` <br>
 Run: `ros2 launch differential_drive_robot robot.launch.py`
 
+Load RViz2 with the command `rviz2`. Then go into File -> Open Config -> select default_nav.rviz from the config folder of this repo
+
 ## Setup worlds
 You can change worlds by changing world index in `robot.launch.py` worlds list. Worlds are: Office, [REDACTED] Construction, Maze [/REDACTED]<br>
 For setup, first download the [maps](https://www.mediafire.com/file/x9dwggxta4uoo66/worlds.zip/file) and unzip it, this should give you a worlds folder containing 3 subfolders
