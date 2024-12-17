@@ -12,6 +12,7 @@ from launch.actions import TimerAction
 from launch_ros.actions import Node
 
 robo_spawn_list = [(2.5, -1.5, 1.57), (6.5, -6, 1.57/2), (-6.5, -5, 1.57*3/2), (-6, 6, 1.57*5/2), (7, 5, 1.57*7/2)]
+use_rand_spawning = False
 
 def generate_launch_description():
 
@@ -38,7 +39,10 @@ def generate_launch_description():
     )
 
     robot_spawn_point = random.choice(robo_spawn_list)
+    if not use_rand_spawning:
+        robot_spawn_point = (3, -4, 0) # Specify custom robot position if not using random
     # robot_spawn_point = robo_spawn_list[1]
+
     print(robot_spawn_point)
     
     # Run the spawner node from the gazebo_ros package. 
@@ -92,7 +96,8 @@ def generate_launch_description():
     random_goal = generate_random_goal(obstacle_regions, (x_min, x_max), (y_min, y_max))
     print(f"Random goal coordinates: {random_goal}")
     targetX, targetY = random_goal
-    # targetX, targetY = 2, 4
+    if not use_rand_spawning:
+        targetX, targetY = 5.5, 3.5 # Specify custom target position if not using random
     targetW = 1
 
     spawn_target = Node(
