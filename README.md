@@ -1,7 +1,8 @@
 # Project Overview
 This project focuses on the development of an autonomous differential-drive robotic system designed to navigate complex disaster-stricken environments. Leveraging SLAM (Simultaneous Localization and Mapping) and the Nav2 toolset in ROS2, the robot operates within simulated environments using Gazebo. It autonomously detects obstacles, updates its environmental map in real time, and navigates to specified goal points with precision. The primary goal of this system is to facilitate effective navigation and victim assistance in unpredictable and hazardous scenarios. By utilizing lidar data and advanced path planning algorithms, the robot achieves accurate and efficient navigation, as demonstrated in simulation tests conducted in unfamiliar environments.
 
-### [Project Report](Autonomous Navigation of Disaster Environments Using SLAM and Nav2.pdf)
+### [Project Report](Autonomous%20Navigation%20of%20Disaster%20Environments%20Using%20SLAM%20and%20Nav2.pdf)
+
 
 
 # Demo Photos
